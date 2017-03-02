@@ -54,7 +54,7 @@ simPop<-function(A, init, tmax){
 }
 
 ImportMatrices<-function(){
-	Amat<-read.csv("~/Google Drive/Plant Matrix model/matrices.csv", na.string="")
+	Amat<-read.csv("matrices.csv", na.string="")
 	Amat[,11]<-as.numeric(rep(NA, 44))
 	Amat[which(Amat[,c(3,12)]=="sdlng"|Amat[,c(3,12)]=="From"),]<-NA
 	

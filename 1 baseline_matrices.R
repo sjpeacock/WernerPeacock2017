@@ -3,7 +3,7 @@ library(matrixcalc)
 
 rm(list=ls())
 
-source('~/Google Drive/Plant Matrix model/Draft/Code/functions.R', chdir = TRUE)
+source('functions.R', chdir = TRUE)
 
 A<-ImportMatrices()
 
