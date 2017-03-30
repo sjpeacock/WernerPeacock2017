@@ -189,8 +189,9 @@ sim.N<-function(sorghum=Y, burn.sequence="NE", stoch.probs=NA, nt=100, n=1000, A
 	
 	lambda.all<-c(det=round(calcLambda(A1)^(1/burn.seq.length), 3),
 		stoch.mean=round(exp(mean(log.lambda_s)), 3),
-		stoch=round(exp(quantile(log.lambda_s, 0.025)), 3),
-		stoch=round(exp(quantile(log.lambda_s, 0.975)), 3)
+		stoch.l=round(exp(quantile(log.lambda_s, 0.025)), 3),
+		stoch.u=round(exp(quantile(log.lambda_s, 0.975)), 3),
+		stoch.pop=length(which(exp(log.lambda_s)>1))/1000
 		)
 	
 		

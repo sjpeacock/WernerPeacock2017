@@ -29,7 +29,8 @@ for(j in 1:2){
 #------------------------------
 
 time0<-proc.time()[3]
-f<-1 #Just consider early dry season fires 
+# f <- 1 	# Just consider early dry season fires 
+f <- 3 	# Just consider wet season fires
 for(m in 1:length(p.burn2)){
 	for(k in 1:2){ #moderate and high seedling survival
 		for(s in 1:2){ #for sorghum and non-sorghum
@@ -37,8 +38,8 @@ for(m in 1:length(p.burn2)){
 		A[[1,s]][1,6:8]<-c(1,2,2)
 		A[[1,s]][2,1]<-c(0.5, 0.9)[k]
 		
-		A[[2,s]][1,6:8]<-A[[1,s]][1,6:8]*(1-p.burn2[m])
-		A[[2,s]][2,1]<-A[[1,s]][2,1]*(1-p.burn2[m])
+		A[[f+1,s]][1,6:8]<-A[[1,s]][1,6:8]*(1-p.burn2[m])
+		A[[f+1,s]][2,1]<-A[[1,s]][2,1]*(1-p.burn2[m])
 		
 		for(j in 1:length(x)){
 				
@@ -120,4 +121,4 @@ for(m in 1:length(p.burn2)){
 }
 
 #------------------
-save.image("patchiness_20170129.RData")
+save.image("patchiness_wet_20170312.RData")

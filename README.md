@@ -16,4 +16,4 @@
 
 ```functions.R```: functions called on by other .R files
 
-matrices.csv: the different transition matrices used in the model simulations (Table 3)
+```matrices.csv```: the different transition matrices used in the model simulations (Table 3)
