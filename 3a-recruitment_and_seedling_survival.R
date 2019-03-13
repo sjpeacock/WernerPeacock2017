@@ -1,19 +1,18 @@
-rm(list=ls())
+# This file runs some sensitivity analyses to recruitment and seedling survival
+# which are not well defined for our study system. These results are not part of
+# the Ecosphere paper, but are provided here as a supplement.
 
-setwd('~/Google Drive/Plant Matrix model/Draft/WernerPeacock2017')
-
-source('functions.R', chdir = TRUE)
-
-A<-ImportMatrices()
-
-
+library(here)
 library(lattice)
 library(gplots)
 library(popbio)
-#p.burn<-matrix(c(0,0,1,1,1,1,1,1), nrow=4, ncol=2, byrow=TRUE)
+
+source('functions.R')
+
+A<-ImportMatrices()
+
 # Werner (NTN) burn data
 p.burn<-matrix(c(0,0,0.947,0.531,1,1,0.986,0.932), nrow=4, ncol=2, byrow=TRUE)
-
 
 recruitment.nofire<-cbind(1, 2, 10)
 seedlingSurv.nofire<-c(0.1, 0.5, 0.9)

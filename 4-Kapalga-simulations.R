@@ -1,9 +1,8 @@
-rm(list=ls())
+library(here)
 library(lattice)
 library(gplots)
 
-# setwd("~/Google Drive/Plant Matrix model/Draft/WernerPeacock2017")
-source('functions.R', chdir = TRUE)
+source('functions.R')
 
 A<-ImportMatrices()
 
@@ -85,3 +84,29 @@ burned2[burned2==4]<-"W"
 # write.csv(burned2[,c(5,1,2,3,4)], file="Table6.csv")
 # write.csv(rbind(c("Stage", plots), cbind(c("1. SEEDLING", "2. SMALL JUVENILE", "3. LARGE JUVENILE", "4. SMALL SAPLING", "5. LARGE SAPLING", "6. POLE", "7. ADULT", "8. LARGE ADULT"), init)), file="Table7.csv")
 
+quartz(width=6.3, height=6)
+
+# colK<-c(colF, "orange")
+layout(matrix(c(1:8), nrow=4, ncol=2, byrow=TRUE))
+	par(mar=c(2,2,2,0), oma=c(2,2,3,1), mgp=c(2.5, 0.8, 0))
+	for(i in 1:8){
+		plot(1:(nt+1), N[1,i,1:(nt+1)], "n", bty="l", xaxt="n", las=1, xlab="", ylab="", ylim=c(0,1.05*max(c(N[,i,1:(nt+1)], dat2003[i,], dat1989[i,]), na.rm=TRUE)), xaxt="n")
+		for(j in 1:4){
+			points(1:(nt+1), N[j,i,1:(nt+1)], "o", pch=20+j, bg="white")#, col=colK[j])
+			points(nt+1, dat2003[i,j], pch=20+j, col="#00000050", bg="#00000050")#, col=colK[j])
+			points(8, dat1989[i,j], pch=20+j, col="#00000050",  bg="#00000050")#, col=colK[j])
+			# lines(1:(nt+1), N[1,i,1:(nt+1)], col=colK[j])
+			}
+		
+		axis(side=1, at=seq(1,(nt+1),1), labels=FALSE, tck=-0.05)
+		axis(side=1, at=seq(3,(nt+1),5), labels=seq(1985, 2003,5), tck=-0.1, mgp=c(2.5, 0.5,0))
+		
+		mtext(side=3, line=0.5, paste(" ", letters[i], ") ", c("Seedlings", "Small juveniles", "Large juveniles", "Small saplings", "Large saplings", "Poles", "Adults", "Large adults")[i], sep=""), cex=par("cex"), adj=0)
+		
+		if(i==1){
+		legend(15, 2.1*max(c(N[,i,1:(nt+1)], dat2003[i,], dat1989[i,]), na.rm=TRUE), col=c(1, "#00000050"), pch=c(21, 19), pt.bg="white", c("Prediction", "Observation"), bty="n", xpd=NA, bg="white", lwd=c(1, NA))
+		legend(25, 2.1*max(c(N[,i,1:(nt+1)], dat2003[i,], dat1989[i,]), na.rm=TRUE), pch=21:25, legend=plots, border=NA, bty="n", xpd=NA, bg="white", ncol=3)
+			}
+		}
+mtext(side=2, outer=TRUE, "Number of individuals",line=0.5)
+mtext(side=1, outer=TRUE, "Year",line=0.5)
