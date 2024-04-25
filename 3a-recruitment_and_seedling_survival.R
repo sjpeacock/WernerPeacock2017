@@ -16,7 +16,7 @@ p.burn<-matrix(c(0,0,0.947,0.531,1,1,0.986,0.932), nrow=4, ncol=2, byrow=TRUE)
 
 recruitment.nofire<-cbind(1, 2, 10)
 seedlingSurv.nofire<-c(0.1, 0.5, 0.9)
-x<-c(1:20)
+x<-c(1:20) # Fire return intervals
 
 nt<-500
 n<-1000
@@ -53,7 +53,7 @@ for(u in 1:2){ # First recruitment, then seedling survival
 
 		for(f in 1:3){ # for each fire type except no fire
 			for(s in 1:2){ #for sorghum and non-sorghum
-				for(j in 1:length(x)){
+				for(j in 1:length(x)){ # For each fire return interval
 					
 					burn.seq.num<-c(f+1, rep(1, x[j]-1))
 					
